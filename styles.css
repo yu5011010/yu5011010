@@ -1,0 +1,837 @@
+/* 
+ * たいら土地家屋調査士事務所 スタイルシート
+ * 作成日: 2025-03-29
+ */
+
+/* ===== ベーススタイル ===== */
+:root {
+    /* カラー */
+    --color-primary: #1A3A6E;
+    --color-primary-light: #5B9BD5;
+    --color-accent: #F7941D;
+    --color-accent-secondary: #70AD47;
+    --color-bg-light: #F2F2F2;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-white: #FFFFFF;
+    
+    /* フォントサイズ */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+    
+    /* スペーシング */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    
+    /* ボーダーラディウス */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* トランジション */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* シャドウ */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* リセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-white);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-light);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* コンテナ */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* セクション */
+section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: var(--spacing-md) auto 0;
+}
+
+/* ボタン */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    font-size: var(--font-size-base);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-white);
+}
+
+.btn-secondary {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* アクセント */
+.accent {
+    color: var(--color-accent);
+}
+
+/* ===== ヘッダー ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+    padding: var(--spacing-md) 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 200px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+}
+
+.nav-list li {
+    margin: 0 var(--spacing-md);
+}
+
+.nav-list a {
+    font-weight: 500;
+    padding: var(--spacing-xs) 0;
+    position: relative;
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-normal);
+}
+
+.nav-list a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-primary);
+    position: relative;
+    transition: background-color var(--transition-fast);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* ===== ヒーローセクション ===== */
+.hero {
+    padding: 120px 0 var(--spacing-3xl);
+    background-color: var(--color-bg-light);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.3;
+}
+
+.hero p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+/* ===== 悩み解決セクション ===== */
+.problems {
+    background-color: var(--color-white);
+}
+
+.problem-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.card-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.card-content ul {
+    padding-left: var(--spacing-lg);
+}
+
+.card-content li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: var(--spacing-lg);
+}
+
+.card-content li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-secondary);
+    font-weight: bold;
+}
+
+.problem-footer {
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+}
+
+.problem-footer p {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===== 事務所紹介セクション ===== */
+.about {
+    background-color: var(--color-bg-light);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+.about-image img {
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.about-text h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.philosophy {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-text p {
+    margin-bottom: var(--spacing-md);
+}
+
+.about-table {
+    width: 100%;
+    margin-top: var(--spacing-xl);
+    border-collapse: collapse;
+}
+
+.about-table th, .about-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid #ddd;
+}
+
+.about-table th {
+    width: 30%;
+    text-align: left;
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+/* ===== 業務内容セクション ===== */
+.services {
+    background-color: var(--color-white);
+}
+
+.service-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.service-category h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary-light);
+}
+
+.service-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.service-list i {
+    color: var(--color-accent-secondary);
+    margin-right: var(--spacing-sm);
+}
+
+.service-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.service-image img {
+    border-radius: var(--border-radius-md);
+    transition: transform var(--transition-normal);
+}
+
+.service-image img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== 報酬金額セクション ===== */
+.fee {
+    background-color: var(--color-bg-light);
+}
+
+.fee-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.fee-tab {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.fee-tab.active, .fee-tab:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.fee-tab-content {
+    background-color: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    display: none;
+}
+
+.fee-tab-content.active {
+    display: block;
+}
+
+.fee-tab-content ul {
+    padding-left: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+}
+
+.fee-tab-content li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.fee-tab-content li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+.fee-note {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.fee-note p {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===== 業務の流れセクション ===== */
+.flow {
+    background-color: var(--color-white);
+}
+
+.flow-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.flow-tab {
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--color-white);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.flow-tab.active, .flow-tab:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.flow-content {
+    display: none;
+}
+
+.flow-content.active {
+    display: block;
+}
+
+.flow-steps {
+    position: relative;
+}
+
+.flow-steps::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    width: 2px;
+    background-color: var(--color-primary-light);
+}
+
+.flow-step {
+    display: flex;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    margin-right: var(--spacing-lg);
+    z-index: 1;
+}
+
+.step-content {
+    flex: 1;
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.step-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===== よくあるご質問セクション ===== */
+.faq {
+    background-color: var(--color-bg-light);
+}
+
+.faq-item {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.faq-question:hover {
+    background-color: rgba(91, 155, 213, 0.1);
+}
+
+.faq-question h3 {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-primary);
+    flex: 1;
+}
+
+.faq-toggle {
+    color: var(--color-primary);
+    transition: transform var(--transition-normal);
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-more {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.faq-more p {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===== アクセスセクション ===== */
+.access {
+    background-color: var(--color-white);
+}
+
+.access-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-xl);
+}
+
+.access-map {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.access-info {
+    padding: var(--spacing-lg);
+}
+
+.access-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-table th, .access-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid #ddd;
+}
+
+.access-table th {
+    width: 30%;
+    text-align: left;
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+/* ===== お問い合わせセクション ===== */
+.contact {
+    background-color: var(--color-bg-light);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+}
+
+.contact-info {
+    padding: var(--spacing-lg);
+}
+
+.contact-methods {
+    margin-top: var(--spacing-xl);
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-method i {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-right: var(--spacing-lg);
+}
+
+.contact-method h3 {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-form {
+    background-color: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+}
+
+.required {
+    color: #e74c3c;
+    margin-left: var(--spacing-xs);
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: var(--font-size-base);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-light);
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+/* ===== フッター ===== */
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-2xl) 0 var(--spacing-md);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-logo img {
+    height: 50px;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo p {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.footer-nav-column h3 {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white);
+}
+
+.footer-nav-column ul li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-nav-column a {
+    color: var(--color-white);
+    opacity: 0.8;
+    transition: opacity var(--transition-fast);
+}
+
+.footer-nav-column a:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: ce<response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>
